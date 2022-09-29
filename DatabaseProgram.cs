@@ -15,7 +15,7 @@
 
 using System.Data.SqlClient;
 
-string stringaDiConnessione = "Data Source=localhost;" + "Initial Catalog=db-library;" + "Integrated Security=True;";
+string stringaDiConnessione = "Data Source=localhost;Initial Catalog=db-library;Integrated Security=True";
 
 SqlConnection connessioneSql = new SqlConnection(stringaDiConnessione);
 
@@ -23,26 +23,9 @@ try
 {
     connessioneSql.Open();
 
-    //void login(string inputUser, string inputPassword)
-    //{
-    //    String login = "SELECT * FROM User WHERE name=@Name AND password=@Password";
-    //    using (SqlCommand cmd = new SqlCommand(login, connessioneSql))
-    //    {
-    //        cmd.Parameters.Add(new SqlParameter("@Name", inputUser));
-    //        cmd.Parameters.Add(new SqlParameter("@Password", inputPassword));
-    //        using (SqlDataReader reader = cmd.ExecuteReader())
-    //        {
-    //            if(reader.Read())
-    //            {
-    //                Console.WriteLine("Plebeo");
-    //            }
-    //        }
-    //    }
-    //}
-
     string query = "INSERT INTO Product (title, year, category, author, available) VALUES (@title, @year, @category, @author, @available)";
 
-    using SqlCommand cmd = new SqlCommand(query, connessioneSql);
+    SqlCommand cmd = new SqlCommand(query, connessioneSql);
 
     cmd.Parameters.Add(new SqlParameter("@title", "Harry Potter"));
     cmd.Parameters.Add(new SqlParameter("@year", 2001));
@@ -51,12 +34,6 @@ try
     cmd.Parameters.Add(new SqlParameter("@available", 1));
 
     cmd.ExecuteNonQuery();
-
-    //using (SqlDataReader reader = cmd.ExecuteReader())
-    //{
-
-    //}
-
 }
 catch (Exception ex)
 {
